@@ -3,3 +3,6 @@ export function getDiceRollArray(diceCount) {
         return Math.floor(Math.random() * 6) + 1
     })
 }
+
+export const getPercentage = (remainingHealth, maxHealth) =>
+    (100 * remainingHealth) / maxHealth
