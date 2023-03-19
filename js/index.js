@@ -5,7 +5,6 @@ let monstersArray = ["orc", "demon", "goblin"];
 let isWaiting = false;
 
 function attack() {
-    console.log(isWaiting);
     if (!isWaiting) {
         wizard.takeDamages(monster.currentDiceScore);
         monster.takeDamages(wizard.currentDiceScore)
@@ -20,6 +19,7 @@ function attack() {
                 setTimeout(() => {
                     monster = getNewMonster()
                     renderCharacter()
+                    showDice()
                     isWaiting = false
                 }, 1000)
             } else {
@@ -57,17 +57,19 @@ function renderCharacter() {
     document.getElementById("monster").innerHTML = monster.getCharacterHtml()
 }
 
-const attackButton = document.getElementById("attack-button");
-attackButton.addEventListener("click", attack)
-attackButton.disabled = isWaiting ? true : false
-
 function showDice() {
     document.querySelectorAll(".dice").forEach((diceEl) => {
         diceEl.classList.remove("placeholder-dice")
     })
 }
 
+function init() {
+    renderCharacter()
+
+    document.getElementById("attack-button").addEventListener("click", attack)
+}
 
 const wizard = new Character(data.hero);
 let monster = getNewMonster();
-renderCharacter()
+
+document.addEventListener("DOMContentLoaded", init)
