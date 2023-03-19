@@ -1,7 +1,7 @@
 import {
     getDiceRollArray,
     getPercentage
-} from "./utils.js"
+} from "../js/utils.js"
 
 class Character {
     constructor(data) {
